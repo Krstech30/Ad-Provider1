@@ -160,25 +160,29 @@ public class UserController {
 		Date date = new Date();
 
 		try {
-			User newuser = userRepository.findById(id).orElseThrow();
-			if (newuser == null) {
+			User existingUser = userRepository.findById(id).orElseThrow();
+			if (existingUser == null) {
 				return ResponseEntity.notFound().build();
 			}
 			User user3 = mapper.readValue(user, User.class);
-			newuser.setName(user3.getName());
-			newuser.setUsername(user3.getUsername());
-			newuser.setPhone(user3.getPhone());
-			newuser.setEmail(user3.getEmail());
-			newuser.setPassword(user3.getPassword());
-			newuser.setConformPassword(user3.getConformPassword());
-			newuser.setModified_by(user3.getModified_by());
-			newuser.setModified_date(formatter.format(date));
-			if (imageFile != null) {
-				Set<ImageModel> images = uploadImage(imageFile);
-				newuser.setImages(images);
-			}
+			existingUser.setName(user3.getName());
+			existingUser.setUsername(user3.getUsername());
+			existingUser.setPhone(user3.getPhone());
+			existingUser.setEmail(user3.getEmail());
+			existingUser.setPassword(user3.getPassword());
+			existingUser.setConformPassword(user3.getConformPassword());
+			existingUser.setModified_by(user3.getModified_by());
+			existingUser.setModified_date(formatter.format(date));
+			if (imageFile != null && imageFile.length > 0) {
+	            Set<ImageModel> existingImages = existingUser.getImages();
+	            if (existingImages != null) {
+	                existingImages.clear(); // Clear existing images
+	            }
+	            Set<ImageModel> newImages = uploadImage(imageFile);
+	            existingUser.setImages(newImages);
+	        }
 
-			User updatedUser = userService.updateImage(id, newuser, imageFile);
+			User updatedUser = userService.updateImage(id, existingUser, imageFile);
 
 			if (updatedUser != null) {
 				return new ResponseEntity<>(updatedUser, HttpStatus.CREATED);

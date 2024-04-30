@@ -5,10 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name="imageModeltabs")
 public class ImageModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +29,7 @@ public class ImageModel {
 
 	public ImageModel() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public ImageModel(String name, byte[] picBytes, String contentType) {

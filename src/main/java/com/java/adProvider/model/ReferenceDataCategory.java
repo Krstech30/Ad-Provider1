@@ -15,7 +15,6 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
-//@NoArgsConstructor
 @Entity
 @Table(name = "tb_reference_data_category")
 public class ReferenceDataCategory {
@@ -32,9 +31,10 @@ public class ReferenceDataCategory {
 	private boolean is_system_modified;
 	private String system_modified_date;
 	private Timestamp row_version;
+	
 	public ReferenceDataCategory() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.java.adProvider.model;
 
 import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,9 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +33,7 @@ public class AdProviderDetails {
 	private String education;
 	private String company_name;
 	private String company_add;
-	private String registration_date; // date
+	private String registration_date; 
 	private String services;
 	private String provided_by;
 	private String product_name;
@@ -45,12 +42,10 @@ public class AdProviderDetails {
 	private boolean is_system_modified;
 	private String system_modified_date;
 	private Timestamp row_version;
-	// private String phone;
-	// private Long id;
+	
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-//	@MapsId
 	@JoinColumn(name = "uid")
 	private User user;
 

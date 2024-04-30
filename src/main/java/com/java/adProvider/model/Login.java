@@ -4,6 +4,7 @@ public class Login {
 	private Long id;
 	private String username;
 	private String password;
+	private String email;
 
 	public Login() {
 		super();
@@ -16,11 +17,12 @@ public class Login {
 		this.password = password;
 	}
 
-	public Login(Long id, String username, String password) {
+	public Login(Long id, String username, String password,String email) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.email=email;
 	}
 
 	public String getUsername() {
@@ -47,4 +49,12 @@ public class Login {
 		this.id = id;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+    
 }
