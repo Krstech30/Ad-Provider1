@@ -140,9 +140,14 @@ public class UserController {
 			User user = userService.verifyUser(loginRequest);
 			Map<String, Object> response = new HashMap<>();
 			response.put("message", "user verified successfully");
+			if(loginRequest.getUsername()!=null) {
 			response.put("username", loginRequest.getUsername());
 			response.put("id", user.getId());
-//           response.put("password", loginRequest.getPassword());
+			}
+			if(loginRequest.getEmail()!=null) {
+			response.put("email", loginRequest.getEmail());
+			response.put("id", user.getId());
+			}
 
 			return ResponseEntity.status(HttpStatus.OK).body(response);
 		} catch (Exception e) {
